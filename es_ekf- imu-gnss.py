@@ -602,42 +602,6 @@ gnss_t
 #Agora que temos estimativas de estado para todos os nossos dados de sensor, vamos plotar os resultados.
 #Este gráfico mostrará a verdade terrestre e as trajetórias estimadas no mesmo gráfico.
 ################################################################################################
-est_traj_fig = plt.figure()
-ax = est_traj_fig.add_subplot(111, projection='3d')
-ax.plot(p_est[:,0], p_est[:,1], p_est[:,2], label='Estimativa')
-ax.plot(gt.p[:,0], gt.p[:,1], gt.p[:,2], label='Ground Truth')
-ax.set_xlabel('Eixo X [m]')
-ax.set_ylabel('Eixo Y [m]')
-ax.set_zlabel('Eixo Z [m]')
-ax.set_title('Trajetória Estimada X Ground Truth')
-#ax.set_xlim(0, 200)
-#ax.set_ylim(0, 200)
-ax.set_zlim(-2, 2)
-#ax.set_xticks([0, 50, 100, 150, 200])
-#ax.set_yticks([0, 50, 100, 150, 200])
-#ax.set_zticks([-2, -1, 0, 1, 2])
-ax.legend(loc=(0.62,0.77))
-ax.view_init(elev=45, azim=-50)
-plt.show()
-
-
-# In[41]:
-
-
-gt.p
-
-
-# In[42]:
-
-
-for i in range(0, gt.p.shape[0]):
-    if p_est[i][2] > 0.2 or p_est[i][2] < -0.2:
-        print(f'k: {i}\nAltura: {p_est[i]}')
-
-
-# In[44]:
-
-
 error_fig, ax = plt.subplots(2, 3)
 error_fig.suptitle('Error Plots')
 num_gt = gt.p.shape[0]
